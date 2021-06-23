@@ -1,11 +1,19 @@
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Player from "../components/Player";
 import PlayerDetails from "../components/PlayerDetails";
 import List from "../components/List";
-import corak from "../public/corak.png";
+
+const PlayerDetailsItems = {
+  title: "37th ASEAN Summit Logo",
+  description:
+    'Ukiran emas diinspirasikan daripada "Bunga Ayer Muleh", melambangkan motif tradisional Negara Brunei Darussalam. Ukiran ini memberi pengertian bahawa ASEAN sentiasa mengalu-alukan kerjasama dengan negara-negara luar yang menyumbang ke arah pembangunan serta meningkatkan kedayatahanan rantau ASEAN.',
+  date: "2021-04-28T07:31:15.713",
+};
 
 export default function Home() {
+  const [is_item_details, setItemDetails] = useState([]);
+  console.log("is_item_details" + is_item_details);
   return (
     <div>
       <Head>
@@ -27,15 +35,16 @@ export default function Home() {
           <div className="row">
             <div className="col-12 col-lg-8">
               <Player id="3540" />
-              <PlayerDetails />
+              <PlayerDetails details={PlayerDetailsItems} />
             </div>
             <div className="col-12 col-lg-4">
               <p className="fw-bold f_22">More Videos</p>
-              <List />
+              <List setMainDetails={setItemDetails} />
             </div>
           </div>
         </div>
       </section>
+      <p>{is_item_details}</p>
     </div>
   );
 }

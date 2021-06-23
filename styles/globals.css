@@ -208,7 +208,7 @@ a {
 }
 
 .list-height {
-  max-height: 730px;
+  height: 560px;
   overflow-y: scroll;
 }
 

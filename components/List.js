@@ -3,11 +3,10 @@ import moment from "moment";
 import axios from "axios";
 
 const convertDuration = (duration) => {
-  console.log(Math.floor(duration / 60) + ":" + (duration % 60));
   return Math.floor(duration / 60) + ":" + (duration % 60);
 };
 
-const List = () => {
+const List = ({ setMainDetails }) => {
   const [is_list, setList] = useState([]);
   const [is_maxList, setMaxList] = useState(5);
 
@@ -20,11 +19,17 @@ const List = () => {
   }, [is_maxList]);
 
   const getEachData = (list) => {
-    list.forEach((items) => {
+    list.forEach((items, index) => {
       axios
         .get("https://rtb.glueapi.io/v1/content/" + items.id)
         .then((response) => {
           setList((prevState) => [...prevState, response.data.data]);
+
+          if (index === 0) {
+            const dataFirst = response.data.data[0];
+            setMainDetails(dataFirst);
+            console.log(JSON.stringify(response.data.data, null, 2));
+          }
         });
     });
   };
