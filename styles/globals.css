@@ -40,7 +40,8 @@ a {
 .header-asean {
   padding: 0 0 0 88px;
   height: 100px;
-  box-shadow: 0 3px 6px -6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px -6px rgba(74, 32, 32, 0.16);
+  z-index: 222222;
 }
 .header-asean-logo {
   width: 177px !important;
