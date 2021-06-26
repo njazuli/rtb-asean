@@ -6,6 +6,7 @@
   --yellow: #fecc2f;
   --gray-1: #f5f5f5;
   --gray-2: #e8e8e8;
+  --live-bg-black: #3b3b3b;
 }
 
 html,
@@ -43,7 +44,7 @@ a {
   box-shadow: 0 3px 6px -6px rgba(0, 0, 0, 0.16);
 }
 .header-asean-logo {
-  width: 177px !important;
+  width: 100%;
 }
 .header_leftItem {
   position: relative;
@@ -52,6 +53,7 @@ a {
   z-index: 3;
 }
 .header_logo_placement {
+  width: 177px !important;
   position: absolute;
   top: -52px;
   left: 0;
@@ -141,7 +143,21 @@ a {
   line-height: 1.35;
   color: var(--main-text);
 }
-
+.live-section-bg {
+  background: var(--live-bg-black);
+}
+.live-section-padding {
+  padding: 38px 0 50px;
+}
+.live-section-title {
+  font-size: 30px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.37;
+  text-align: center;
+  color: #ffffff;
+}
 .date-time-and-share {
   font-weight: 600;
   line-height: 1.21;
@@ -150,7 +166,7 @@ a {
 
 .main-desc {
   font-weight: 600;
-  line-height: 1.36;
+  line-height: 22px;
   color: var(--main-text);
 }
 
@@ -181,6 +197,10 @@ a {
 
 .list-bg {
   background: var(--gray-1);
+  cursor: pointer;
+}
+.isActive {
+  background: rgba(0, 0, 0, 0.21);
 }
 
 .duration-div {
@@ -200,18 +220,23 @@ a {
 .load-more {
   background: var(--yellow);
   border-radius: 5px;
-  padding: 4px 16px;
+  padding: 10px 16px;
   font-weight: 600;
   line-height: 1.17;
   color: var(--main-text);
   border: none;
 }
 
-.list-height {
-  height: 560px;
-  overflow-y: scroll;
+.load-more:disabled,
+.load-more[disabled] {
+  background: rgba(254, 204, 47, 0.4);
+  color: rgba(68, 68, 68, 0.4);
 }
 
+.footer-logo {
+  width: 177px;
+  margin: 0 auto;
+}
 @media screen and (max-width: 380px) {
   .f_45 {
     font-size: 35px;
@@ -228,6 +253,15 @@ a {
   }
 }
 @media (max-width: 992px) {
+  .container {
+    max-width: 580px !important;
+  }
+  .main-padding {
+    padding: 40px 0;
+  }
+  .main-top-pattern {
+    height: 60px;
+  }
   .header-asean {
     padding: 24px 16px;
     height: 70px;
@@ -235,10 +269,10 @@ a {
   }
   .header_leftItem {
     margin-right: 8px;
-    width: 108px;
+    width: 90px;
   }
   .header-asean-logo {
-    width: 89px !important;
+    width: 100%;
   }
   .header_text {
     font-size: 18px;
@@ -248,8 +282,16 @@ a {
   }
   .header_logo_placement {
     top: -35px;
+    width: 89px !important;
   }
   .footer-bg {
     padding: 16px 0;
+  }
+  .footer-logo {
+    width: 120px;
+  }
+  .live-section-title {
+    font-size: 26px;
+    font-weight: 600;
   }
 }
