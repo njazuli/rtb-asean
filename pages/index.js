@@ -32,10 +32,9 @@ export default function Home({ data }) {
   const [is_description, setDescription] = useState();
   const [is_date, setDate] = useState();
   const live_player_id = 2;
-  const [is_mounted, setMounted] = useState(false);
+  let widget_timeout = null;
   let script_timeout = null;
   const widgetEl = createRef(null);
-  const element = useRef(null);
 
   useEffect(() => {
     getEachData(is_first_list);
@@ -53,21 +52,23 @@ export default function Home({ data }) {
     const containerRef = widgetEl.current;
     let widget = null;
     let widgetresizer = null;
-    console.log("myContainer..", containerRef);
-    widget = new RTBCountdownWidget(
-      "https://njazuli.github.io/rtb-asean-widget/"
-    );
-    widget.loadBanner(containerRef);
 
+    widget_timeout = setTimeout(() => {
+      widget = new RTBCountdownWidget(
+        "https://njazuli.github.io/rtb-asean-widget/"
+      );
+      widget.loadBanner(containerRef);
+    }, 2000);
     script_timeout = setTimeout(() => {
       widgetresizer = iFrameResize({
         log: false,
         inPageLinks: true,
       });
-    }, 500);
+    }, 2500);
 
     return () => {
       clearTimeout(script_timeout);
+      clearTimeout(widget_timeout);
     };
   }, []);
 
@@ -99,10 +100,7 @@ export default function Home({ data }) {
           name="description"
           content="ASEAN Summit 2021 - Logo ASEAN 2021"
         />
-        <link
-          rel="icon"
-          href="http://asean2021.bn/Theme/assets/img/favicon.png"
-        />
+        <link rel="icon" href="../public/favicon.png" />
         <script src="https://njazuli.github.io/rtb-asean-widget/rtb-countdown-widget.js"></script>
         <script src="https://njazuli.github.io/rtb-asean-widget/banner/js/iframeResizer.min.js"></script>
       </Head>
