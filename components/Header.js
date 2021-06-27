@@ -10,23 +10,47 @@ const Header = () => {
         <div className="header_leftItem">
           <div className="header_logo_placement">
             <Link href="http://asean2021.bn/Theme/index.aspx" passHref={true}>
-              <Image
-                src={logo}
-                alt="Asean Brunei 2021 logo"
-                className="header-asean-logo"
-              />
+              <div className="header-asean-logo">
+                <Image
+                  src={logo}
+                  alt="Asean Brunei 2021 logo"
+                  className="header-asean-logo"
+                  layout="responsive"
+                  quality={100}
+                  sizes="(max-width: 500px) 100vw, 25vw"
+                />
+              </div>
             </Link>
           </div>
         </div>
-        <div className="header_rightItem d-lg-flex flex-row align-items-center d-none">
+        <div className="header_rightItem d-sm-flex flex-row align-items-center d-none">
+          <div className="header-back-btn">
+            <Image
+              src={backBtn}
+              alt="back button to Asean 2021"
+              className="header-back-btn"
+              layout="responsive"
+            />
+          </div>
+          <div className="ms-2 ms-md-3">
+            <span className="header_text">Return to Official Website</span>
+          </div>
+        </div>
+        <div className="header_rightItem d-sm-none flex-row align-items-center d-flex">
           <Image
             src={backBtn}
             alt="back button to Asean 2021"
-            className="header-back-btn"
+            className="header-back-btn pe-2"
+            width={30}
+            height={20}
           />
-          <div className="ms-2 ms-md-3">
-            <span className="header_text"> Return Official Website</span>
-          </div>
+          <Link
+            href="http://asean2021.bn/Theme/index.aspx"
+            passHref={true}
+            style="pe-auto"
+          >
+            <span className="header_text">Home</span>
+          </Link>
         </div>
       </div>
     </div>
