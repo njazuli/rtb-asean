@@ -13,7 +13,7 @@ const List = ({
   setSelectionDescription,
   firstID,
 }) => {
-  const [is_maxList, setMaxList] = useState(5);
+  const [is_maxList, setMaxList] = useState(7);
   const [is_disableLoadMoreBtn, setDisableLoadMoreBtn] = useState();
   const [is_active, setActive] = useState();
 
@@ -36,7 +36,7 @@ const List = ({
   };
   return (
     <>
-      <Scrollbars autoHeight autoHeightMax={480} universal={true} autoHide>
+      <Scrollbars autoHeight autoHeightMax={720} universal={true} autoHide>
         <div className="w-100">
           <div className="container-fluid px-0">
             {list.map((item, index) => {
@@ -80,6 +80,7 @@ const List = ({
                       flex-wrap
                       py-2
                       justify-content-start justify-content-sm-start
+                      pe-2
                     "
                         >
                           <p className="w-100 mb-2 mb-sm-0 list-main-details f_12">

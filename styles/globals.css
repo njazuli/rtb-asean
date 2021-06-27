@@ -180,6 +180,7 @@ a {
   font-weight: 600;
   line-height: 1.17;
   color: var(--main-text);
+  word-break: break-word;
 }
 .list-date-time {
   font-weight: normal;
