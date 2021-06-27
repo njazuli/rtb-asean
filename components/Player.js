@@ -1,5 +1,5 @@
-export const Player = ({ id }) => {
-  const player_link = `https://rtb-player.glueapi.io/latest/h/${id}`;
+const Player = ({ id }) => {
+  const player_link = "https://rtb-player.glueapi.io/latest/h/" + id;
   return (
     <>
       <div className="w-100">
