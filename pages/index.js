@@ -58,13 +58,13 @@ export default function Home({ data }) {
         "https://njazuli.github.io/rtb-asean-widget/"
       );
       widget.loadBanner(containerRef);
-    }, 2000);
+    }, 1800);
     script_timeout = setTimeout(() => {
       widgetresizer = iFrameResize({
         log: false,
         inPageLinks: true,
       });
-    }, 2500);
+    }, 2300);
 
     return () => {
       clearTimeout(script_timeout);
