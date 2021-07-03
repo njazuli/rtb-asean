@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import moment from "moment";
-import axios from "axios";
+import { useBrowserResize } from "../hooks/use-browser-resize";
 
 const convertDuration = (duration) => {
   return Math.floor(duration / 60) + ":" + (duration % 60);
@@ -13,9 +13,10 @@ const List = ({
   setSelectionDescription,
   firstID,
 }) => {
-  const [is_maxList, setMaxList] = useState(7);
+  const [is_maxList, setMaxList] = useState(200);
   const [is_disableLoadMoreBtn, setDisableLoadMoreBtn] = useState();
   const [is_active, setActive] = useState();
+  const mobile = useBrowserResize();
 
   useEffect(() => {
     setActive(firstID);
@@ -25,6 +26,13 @@ const List = ({
     setOnSelectedList(items);
     setSelectionDescription(items.data.description);
     setActive(items.id);
+
+    if (typeof window !== "undefined")
+      if (mobile) {
+        window.scrollTo(0, 400);
+      } else {
+        window.scrollTo(0, 2000);
+      }
   };
 
   const setMaxLimit = () => {
@@ -36,7 +44,7 @@ const List = ({
   };
   return (
     <>
-      <Scrollbars autoHeight autoHeightMax={720} universal={true} autoHide>
+      <Scrollbars autoHeight autoHeightMax={780} universal={true} autoHide>
         <div className="w-100">
           <div className="container-fluid px-0">
             {list.map((item, index) => {
@@ -99,7 +107,7 @@ const List = ({
           </div>
         </div>
       </Scrollbars>
-      <div className="w-100 text-center my-4 my-lg-3">
+      {/* <div className="w-100 text-center my-4 my-lg-3">
         <button
           className="load-more f_12"
           onClick={setMaxLimit}
@@ -107,7 +115,7 @@ const List = ({
         >
           Load More Videos
         </button>
-      </div>
+      </div> */}
     </>
   );
 };
