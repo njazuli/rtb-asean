@@ -39,7 +39,7 @@ const PlayerDetails = ({ id, title, description, date }) => {
           </span>
         </div>
         <div className="h-100 d-flex align-items-center">
-          <div class="addthis_inline_share_toolbox_gryg"></div>
+          <div className="addthis_inline_share_toolbox_gryg"></div>
         </div>
       </div>
 

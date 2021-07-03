@@ -70,7 +70,7 @@ export default function Live({ data }) {
       <Head>
         <title>ASEAN Summit 2021</title>
         <meta name="description" content="ASEAN Summit 2021" />
-        <link rel="icon" href="../public/favicon.png" />
+        <link rel="icon" href="/static/favicon.ico" />
         <script src="https://njazuli.github.io/rtb-asean-widget/rtb-countdown-widget.js"></script>
         <script src="https://njazuli.github.io/rtb-asean-widget/banner/js/iframeResizer.min.js"></script>
       </Head>
