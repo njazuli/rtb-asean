@@ -198,7 +198,9 @@ a {
 
 .list-bg {
   background: var(--gray-1);
+  border: 1px solid var(--gray-1);
   cursor: pointer;
+  border-radius: 4px;
 }
 .isActive {
   background: rgba(0, 0, 0, 0.21);
@@ -238,6 +240,11 @@ a {
   width: 177px;
   margin: 0 auto;
 }
+
+.at-resp-share-element .at-share-btn {
+  margin: 0 2px;
+}
+
 @media screen and (max-width: 380px) {
   .f_45 {
     font-size: 35px;

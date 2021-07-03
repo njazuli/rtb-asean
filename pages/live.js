@@ -1,8 +1,9 @@
 import React, { createRef, useEffect, useState, useRef } from "react";
 import Head from "next/head";
+import LiveSection from "../components/LiveSection";
+import List from "../components/List";
 import Player from "../components/Player";
 import PlayerDetails from "../components/PlayerDetails";
-import List from "../components/List";
 import axios from "axios";
 
 export async function getStaticProps() {
@@ -21,7 +22,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ data }) {
+export default function Live({ data }) {
   const is_data = data.data;
   const is_first_list = data.data.data["program-episode"];
   const [is_list, setList] = useState([]);
@@ -31,9 +32,7 @@ export default function Home({ data }) {
   const [is_title, setTitle] = useState();
   const [is_description, setDescription] = useState();
   const [is_date, setDate] = useState();
-  let widget_timeout = null;
-  let script_timeout = null;
-  const widgetEl = createRef(null);
+  const live_player_id = 2;
 
   useEffect(() => {
     getEachData(is_first_list);
@@ -45,31 +44,6 @@ export default function Home({ data }) {
     setDate(is_item_details.dateCreated);
     setPlayerId(is_item_details.id);
   }, [is_item_details]);
-
-  // load widget
-  useEffect(() => {
-    const containerRef = widgetEl.current;
-    let widget = null;
-    let widgetresizer = null;
-
-    widget_timeout = setTimeout(() => {
-      widget = new RTBCountdownWidget(
-        "https://njazuli.github.io/rtb-asean-widget/"
-      );
-      widget.loadBanner(containerRef);
-    }, 1800);
-    script_timeout = setTimeout(() => {
-      widgetresizer = iFrameResize({
-        log: false,
-        inPageLinks: true,
-      });
-    }, 2300);
-
-    return () => {
-      clearTimeout(script_timeout);
-      clearTimeout(widget_timeout);
-    };
-  }, []);
 
   const getEachData = (list) => {
     Promise.all(
@@ -101,6 +75,7 @@ export default function Home({ data }) {
         <script src="https://njazuli.github.io/rtb-asean-widget/banner/js/iframeResizer.min.js"></script>
       </Head>
       <div className="w-100 main-top-pattern"></div>
+      <LiveSection liveplayerId={live_player_id} />
       <section className="main-padding">
         <div className="container">
           <div className="row mb-2">
@@ -117,9 +92,6 @@ export default function Home({ data }) {
                 description={is_description}
                 date={is_date}
               />
-              <div className="w-100 mb-3 mb-lg-0">
-                <div ref={widgetEl} id="widgetBanner"></div>
-              </div>
             </div>
             <div className="col-12 col-lg-4">
               <p className="fw-bold f_22">More Videos</p>
