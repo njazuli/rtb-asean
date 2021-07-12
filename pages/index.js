@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useState, useRef } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import Head from "next/head";
 import Player from "../components/Player";
 import PlayerDetails from "../components/PlayerDetails";
@@ -92,7 +92,7 @@ export default function Home({ data }) {
   };
 
   return (
-    <div>
+    <div className="bg_pattern">
       <Head>
         <title>ASEAN Summit 2021</title>
         <meta name="description" content="ASEAN Summit 2021" />
@@ -109,7 +109,7 @@ export default function Home({ data }) {
             </div>
           </div>
           <div className="row">
-            <div className="col-12 col-lg-8">
+            <div className="col-12 col-lg-7 col-xl-8 bg-white py-2 py-lg-3 rounded">
               <Player id={is_player_id} />
               <PlayerDetails
                 id={is_id}
@@ -121,7 +121,7 @@ export default function Home({ data }) {
                 <div ref={widgetEl} id="widgetBanner"></div>
               </div>
             </div>
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-5 col-xl-4">
               <p className="fw-bold f_22">More Videos</p>
               <List
                 list={is_list}

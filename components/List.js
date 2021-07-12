@@ -45,18 +45,17 @@ const List = ({
   return (
     <>
       <Scrollbars autoHeight autoHeightMax={780} universal={true} autoHide>
-        <div className="w-100">
+        <div className="w-100 bg-white p-2 rounded">
           <div className="container-fluid px-0">
             {list.map((item, index) => {
               return (
-                <>
+                <div key={"listid" + item.id}>
                   {index < is_maxList && (
                     <div
                       className={
                         "row g-0 mb-3 list-bg " +
                         (item.id === is_active && "isActive")
                       }
-                      key={index}
                       onClick={() => {
                         getPlayerDetails(item);
                       }}
@@ -101,7 +100,7 @@ const List = ({
                       </div>
                     </div>
                   )}
-                </>
+                </div>
               );
             })}
           </div>

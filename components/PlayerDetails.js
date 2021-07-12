@@ -1,15 +1,24 @@
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Head from "next/head";
-import Link from "next/link";
 
 const PlayerDetails = ({ id, title, description, date }) => {
+  const [isLoad, setLoad] = useState(false);
+  let script_timeout = null;
+
+  useEffect(() => {
+    script_timeout = setTimeout(() => {
+      setLoad(!isLoad);
+    }, 500);
+
+    return () => {
+      clearTimeout(script_timeout);
+    };
+  }, []);
+
   return (
     <>
       <Head>
-        <script
-          type="text/javascript"
-          src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d92d889385b2fe2"
-        ></script>
         <title>ASEAN Summit 2021 {title}</title>
         <meta name="description" content={description} />
         <meta property="og:image" content="../public/favicon.png" />
@@ -41,9 +50,12 @@ const PlayerDetails = ({ id, title, description, date }) => {
               {moment(date).format("D MMM YYYY")}
             </span>
           </div>
-          <div className="h-100 d-flex align-items-center">
-            <div className="addthis_inline_share_toolbox_gryg"></div>
-          </div>
+
+          {isLoad && (
+            <div className="h-100 d-flex align-items-center">
+              <div className="addthis_inline_share_toolbox_gryg"></div>
+            </div>
+          )}
         </div>
         <div className="mt-2 mt-sm-0">
           <a

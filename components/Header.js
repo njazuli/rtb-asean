@@ -9,7 +9,7 @@ const Header = () => {
       <div className="w-100 d-flex flex-row justify-content-start align-items-center header-asean">
         <div className="header_leftItem">
           <div className="header_logo_placement">
-            <Link href="http://asean2021.bn/Theme/index.aspx" passHref={true}>
+            <Link href="http://asean2021.bn/" passHref={true}>
               <div className="header-asean-logo">
                 <Image
                   src={logo}
