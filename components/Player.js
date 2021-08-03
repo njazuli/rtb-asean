@@ -4,7 +4,7 @@ export const Player = ({ id }) => {
     <>
       <div className="w-100 player-border">
         <div className="ratio ratio-16x9">
-          <iframe src={player_link}></iframe>
+          <iframe src={player_link} allowfullscreen></iframe>
         </div>
       </div>
     </>
