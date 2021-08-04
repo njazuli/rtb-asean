@@ -19,6 +19,7 @@ export async function getStaticProps() {
   }
   return {
     props: { data }, // will be passed to the page component as props
+    revalidate: 120, // Revalidate every 10 seconds with new data.
   };
 }
 

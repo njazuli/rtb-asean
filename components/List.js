@@ -4,7 +4,13 @@ import moment from "moment";
 import { useBrowserResize } from "../hooks/use-browser-resize";
 
 const convertDuration = (duration) => {
-  return Math.floor(duration / 60) + ":" + (duration % 60);
+  return (
+    Math.floor(minTwoDigits(duration / 60)) + ":" + minTwoDigits(duration % 60)
+  );
+};
+
+const minTwoDigits = (n) => {
+  return (n < 10 ? "0" : "") + n;
 };
 
 const List = ({
@@ -70,11 +76,13 @@ const List = ({
                             className="w-100"
                             alt={"images-for-" + index}
                           />
-                          <div className="duration-div">
-                            <p className="mb-0 duration f_12">
-                              {convertDuration(item.data.duration)}
-                            </p>
-                          </div>
+                          {item.data.duration && (
+                            <div className="duration-div">
+                              <p className="mb-0 duration f_12">
+                                {convertDuration(item.data.duration)}
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </div>
                       <div className="col-12 col-sm-7 px-3">
