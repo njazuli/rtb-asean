@@ -37,10 +37,6 @@ export default function Home({ data }) {
   const widgetEl = createRef(null);
 
   useEffect(() => {
-    is_first_list.sort(function (a, b) {
-      return new Date(b.id) - new Date(a.id);
-    });
-
     getEachData(is_first_list);
   }, [is_data]);
 
@@ -58,9 +54,7 @@ export default function Home({ data }) {
     let widgetresizer = null;
 
     widget_timeout = setTimeout(() => {
-      widget = new RTBCountdownWidget(
-        "https://njazuli.github.io/rtb-asean-widget/"
-      );
+      widget = new RTBCountdownWidget("https://widgetasean.ipsb.com.my/");
       widget.loadBanner(containerRef);
     }, 1800);
     script_timeout = setTimeout(() => {
@@ -102,8 +96,8 @@ export default function Home({ data }) {
         <title>ASEAN Summit 2021</title>
         <meta name="description" content="ASEAN Summit 2021" />
         <link rel="icon" href="/static/favicon.ico" />
-        <script src="https://njazuli.github.io/rtb-asean-widget/rtb-countdown-widget.js"></script>
-        <script src="https://njazuli.github.io/rtb-asean-widget/banner/js/iframeResizer.min.js"></script>
+        <script src="https://widgetasean.ipsb.com.my/rtb-countdown-widget.js?nocache"></script>
+        <script src="https://widgetasean.ipsb.com.my/banner/js/iframeResizer.min.js"></script>
       </Head>
       <div className="w-100 main-top-pattern"></div>
       <section className="main-padding">
@@ -132,7 +126,7 @@ export default function Home({ data }) {
                 list={is_list}
                 setOnSelectedList={setItemDetails}
                 setSelectionDescription={setDescription}
-                firstID={is_player_id}
+                setfirstID={setPlayerId}
               />
             </div>
           </div>
