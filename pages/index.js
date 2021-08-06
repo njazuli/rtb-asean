@@ -7,7 +7,7 @@ import axios from "axios";
 
 export async function getStaticProps() {
   const res = await fetch(
-    `https://rtb.glueapi.io/v1/content/3147?format=json&sort=-dateAvailability`
+    `https://rtb.glueapi.io/v1/content/3147?format=json&sort=-dateCreated`
   );
   const data = await res.json();
 
@@ -37,6 +37,10 @@ export default function Home({ data }) {
   const widgetEl = createRef(null);
 
   useEffect(() => {
+    is_first_list.sort(function (a, b) {
+      return new Date(b.id) - new Date(a.id);
+    });
+
     getEachData(is_first_list);
   }, [is_data]);
 
