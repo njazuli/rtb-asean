@@ -44,11 +44,7 @@ const Header = () => {
             width={30}
             height={20}
           />
-          <Link
-            href="http://asean2021.bn/Theme/index.aspx"
-            passHref={true}
-            style="pe-auto"
-          >
+          <Link href="http://asean2021.bn/" passHref={true} style="pe-auto">
             <span className="header_text">Home</span>
           </Link>
         </div>
