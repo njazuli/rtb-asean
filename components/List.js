@@ -17,16 +17,35 @@ const List = ({
   list,
   setOnSelectedList,
   setSelectionDescription,
-  firstID,
+  setfirstID,
 }) => {
   const [is_maxList, setMaxList] = useState(200);
-  const [is_disableLoadMoreBtn, setDisableLoadMoreBtn] = useState();
   const [is_active, setActive] = useState();
   const mobile = useBrowserResize();
+  let sort_timeout = null;
 
   useEffect(() => {
-    setActive(firstID);
-  }, [firstID]);
+    list.sort(function (a, b) {
+      return (
+        new Date(convertTimestamp(b.dateCreated)) -
+        new Date(convertTimestamp(a.dateCreated))
+      );
+    });
+
+    sort_timeout = setTimeout(() => {
+      setActive(list[0].id);
+      setfirstID(list[0].id);
+    }, 1000);
+
+    return () => {
+      clearTimeout(sort_timeout);
+    };
+  }, [list]);
+
+  const convertTimestamp = (time) => {
+    var date = new Date(time);
+    return date.getTime();
+  };
 
   const getPlayerDetails = (items) => {
     setOnSelectedList(items);
@@ -41,13 +60,14 @@ const List = ({
       }
   };
 
-  const setMaxLimit = () => {
-    if (is_maxList <= list.length) {
-      setMaxList(is_maxList + 5);
+  const truncateString = (str, num) => {
+    if (str.length > num) {
+      return str.slice(0, num) + "...";
     } else {
-      setDisableLoadMoreBtn(true);
+      return str;
     }
   };
+
   return (
     <>
       <Scrollbars autoHeight autoHeightMax={780} universal={true} autoHide>
@@ -99,7 +119,7 @@ const List = ({
                     "
                         >
                           <p className="w-100 mb-2 mb-sm-0 list-main-details f_12">
-                            {item.data.title}
+                            {truncateString(item.data.title, 50)}
                           </p>
                           <p className="w-100 mb-0 list-date-time f_12">
                             {moment(item.dateCreated).format("D MMM YYYY")}

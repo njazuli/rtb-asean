@@ -76,8 +76,6 @@ export default function Live({ data }) {
         <title>ASEAN Summit 2021</title>
         <meta name="description" content="ASEAN Summit 2021" />
         <link rel="icon" href="/static/favicon.ico" />
-        <script src="https://njazuli.github.io/rtb-asean-widget/rtb-countdown-widget.js"></script>
-        <script src="https://njazuli.github.io/rtb-asean-widget/banner/js/iframeResizer.min.js"></script>
       </Head>
       <div className="w-100 main-top-pattern"></div>
       <LiveSection liveplayerId={live_player_id} />
@@ -104,7 +102,7 @@ export default function Live({ data }) {
                 list={is_list}
                 setOnSelectedList={setItemDetails}
                 setSelectionDescription={setDescription}
-                firstID={is_player_id}
+                setfirstID={setPlayerId}
               />
             </div>
           </div>
