@@ -1,9 +1,9 @@
-import React, { createRef, useEffect, useState, useRef } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import Head from "next/head";
-import LiveSection from "../components/LiveSection";
-import List from "../components/List";
 import Player from "../components/Player";
 import PlayerDetails from "../components/PlayerDetails";
+import LiveSection from "../components/LiveSection";
+import List from "../components/List";
 import axios from "axios";
 
 export async function getStaticProps() {
@@ -23,7 +23,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Live({ data }) {
+export default function Home({ data }) {
   const is_data = data.data;
   const is_first_list = data.data.data["program-episode"];
   const [is_list, setList] = useState([]);
@@ -36,10 +36,6 @@ export default function Live({ data }) {
   const live_player_id = 2;
 
   useEffect(() => {
-    is_first_list.sort(function (a, b) {
-      return new Date(b.id) - new Date(a.id);
-    });
-
     getEachData(is_first_list);
   }, [is_data]);
 
@@ -90,7 +86,7 @@ export default function Live({ data }) {
             <div className="col-12 col-lg-7 col-xl-8 bg-white py-2 py-lg-3 rounded">
               <Player id={is_player_id} />
               <PlayerDetails
-                id={is_id}
+                id={is_player_id}
                 title={is_title}
                 description={is_description}
                 date={is_date}
@@ -103,6 +99,8 @@ export default function Live({ data }) {
                 setOnSelectedList={setItemDetails}
                 setSelectionDescription={setDescription}
                 setfirstID={setPlayerId}
+                setTitle={setTitle}
+                setDate={setDate}
               />
             </div>
           </div>

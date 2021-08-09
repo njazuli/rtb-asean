@@ -18,6 +18,8 @@ const List = ({
   setOnSelectedList,
   setSelectionDescription,
   setfirstID,
+  setTitle,
+  setDate,
 }) => {
   const [is_maxList, setMaxList] = useState(200);
   const [is_active, setActive] = useState();
@@ -35,6 +37,9 @@ const List = ({
     sort_timeout = setTimeout(() => {
       setActive(list[0].id);
       setfirstID(list[0].id);
+      setTitle(list[0].title);
+      setDate(list[0].dateCreated);
+      setSelectionDescription(list[0].data.description);
     }, 1000);
 
     return () => {
