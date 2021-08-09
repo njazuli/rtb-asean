@@ -111,7 +111,7 @@ export default function Home({ data }) {
             <div className="col-12 col-lg-7 col-xl-8 bg-white py-2 py-lg-3 rounded">
               <Player id={is_player_id} />
               <PlayerDetails
-                id={is_id}
+                id={is_player_id}
                 title={is_title}
                 description={is_description}
                 date={is_date}
@@ -127,6 +127,8 @@ export default function Home({ data }) {
                 setOnSelectedList={setItemDetails}
                 setSelectionDescription={setDescription}
                 setfirstID={setPlayerId}
+                setTitle={setTitle}
+                setDate={setDate}
               />
             </div>
           </div>
