@@ -7,7 +7,7 @@ import axios from "axios";
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `https://rtb.glueapi.io/v1/content/3147?format=json&sort=-dateCreated`
+    `https://rtb.glueapi.io/v1/content?idParent=3147&sort=-data.episode_number/ns`
   );
   const data = await res.json();
 
@@ -23,7 +23,6 @@ export async function getServerSideProps() {
 
 export default function Home({ data }) {
   const is_data = data.data;
-  const is_first_list = data.data.data["program-episode"];
   const [is_list, setList] = useState([]);
   const [is_item_details, setItemDetails] = useState([]);
   const [is_player_id, setPlayerId] = useState(0);
@@ -36,7 +35,18 @@ export default function Home({ data }) {
   const widgetEl = createRef(null);
 
   useEffect(() => {
-    getEachData(is_first_list);
+    is_data.forEach((items, index) => {
+      const itemdetailsData = items;
+      setList((prevState) => [...prevState, itemdetailsData]);
+
+      if (index === 0) {
+        setPlayerId(items.id);
+        setID(items.id);
+        setTitle(items.data.title);
+        setDescription(items.data.description);
+        setDate(items.dateCreated);
+      }
+    });
   }, [is_data]);
 
   useEffect(() => {
@@ -68,26 +78,6 @@ export default function Home({ data }) {
       clearTimeout(widget_timeout);
     };
   }, []);
-
-  const getEachData = (list) => {
-    Promise.all(
-      list.map((items, index) => {
-        axios
-          .get("https://rtb.glueapi.io/v1/content/" + items.id)
-          .then((response) => {
-            const itemdetailsData = response.data.data;
-            setList((prevState) => [...prevState, itemdetailsData]);
-            if (index === 0) {
-              setPlayerId(response.data.data.id);
-              setID(response.data.data.id);
-              setTitle(response.data.data.data.title);
-              setDescription(response.data.data.data.description);
-              setDate(response.data.data.dateCreated);
-            }
-          });
-      })
-    );
-  };
 
   return (
     <div className="bg_pattern">
