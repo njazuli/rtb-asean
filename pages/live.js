@@ -6,9 +6,9 @@ import LiveSection from "../components/LiveSection";
 import List from "../components/List";
 import axios from "axios";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(
-    `https://rtb.glueapi.io/v1/content/3147?format=json&sort=-dateCreated`
+    `https://rtb.glueapi.io/v1/content?idParent=3147&sort=-data.episode_number/ns`
   );
   const data = await res.json();
 
@@ -18,8 +18,7 @@ export async function getStaticProps() {
     };
   }
   return {
-    props: { data }, // will be passed to the page component as props
-    revalidate: 120, // Revalidate every 10 seconds with new data.
+    props: { data }, // Revalidate every 10 seconds with new data.
   };
 }
 
@@ -36,7 +35,18 @@ export default function Home({ data }) {
   const live_player_id = 2;
 
   useEffect(() => {
-    getEachData(is_first_list);
+    is_data.forEach((items, index) => {
+      const itemdetailsData = items;
+      setList((prevState) => [...prevState, itemdetailsData]);
+
+      if (index === 0) {
+        setPlayerId(items.id);
+        setID(items.id);
+        setTitle(items.data.title);
+        setDescription(items.data.description);
+        setDate(items.dateCreated);
+      }
+    });
   }, [is_data]);
 
   useEffect(() => {
@@ -45,26 +55,6 @@ export default function Home({ data }) {
     setDate(is_item_details.dateCreated);
     setPlayerId(is_item_details.id);
   }, [is_item_details]);
-
-  const getEachData = (list) => {
-    Promise.all(
-      list.map((items, index) => {
-        axios
-          .get("https://rtb.glueapi.io/v1/content/" + items.id)
-          .then((response) => {
-            const itemdetailsData = response.data.data;
-            setList((prevState) => [...prevState, itemdetailsData]);
-            if (index === 0) {
-              setPlayerId(response.data.data.id);
-              setID(response.data.data.id);
-              setTitle(response.data.data.data.title);
-              setDescription(response.data.data.data.description);
-              setDate(response.data.data.dateCreated);
-            }
-          });
-      })
-    );
-  };
 
   return (
     <div className="bg_pattern">
