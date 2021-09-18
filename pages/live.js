@@ -24,7 +24,6 @@ export async function getServerSideProps() {
 
 export default function Home({ data }) {
   const is_data = data.data;
-  const is_first_list = data.data.data["program-episode"];
   const [is_list, setList] = useState([]);
   const [is_item_details, setItemDetails] = useState([]);
   const [is_player_id, setPlayerId] = useState(0);
