@@ -5,7 +5,7 @@ import PlayerDetails from "../components/PlayerDetails";
 import List from "../components/List";
 import axios from "axios";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
     `https://rtb.glueapi.io/v1/content?idParent=3147&sort=-data.episode_number/ns`
   );
@@ -17,7 +17,8 @@ export async function getServerSideProps() {
     };
   }
   return {
-    props: { data }, // Revalidate every 10 seconds with new data.
+    props: { data }, // will be passed to the page component as props
+    revalidate: 120, // Revalidate every 10 seconds with new data.
   };
 }
 
