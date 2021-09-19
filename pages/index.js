@@ -5,35 +5,51 @@ import PlayerDetails from "../components/PlayerDetails";
 import List from "../components/List";
 import axios from "axios";
 
-export async function getStaticProps() {
-  const res = await fetch(
-    `https://rtb.glueapi.io/v1/content?idParent=3147&sort=-data.episode_number/ns`
-  );
-  const data = await res.json();
+// export async function getStaticProps() {
+//   const res = await fetch(
+//     `https://rtb.glueapi.io/v1/content?idParent=3147&sort=-data.episode_number/ns`
+//   );
+//   const data = await res.json();
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-  return {
-    props: { data }, // will be passed to the page component as props
-    revalidate: 120, // Revalidate every 10 seconds with new data.
-  };
-}
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   return {
+//     props: { data }, // will be passed to the page component as props
+//     revalidate: 10, // Revalidate every 10 seconds with new data.
+//   };
+// }
 
-export default function Home({ data }) {
-  const is_data = data.data;
+export default function Home() {
+  const [isMounted, setMounted] = useState(false);
+  const [is_data, setData] = useState([]);
   const [is_list, setList] = useState([]);
   const [is_item_details, setItemDetails] = useState([]);
   const [is_player_id, setPlayerId] = useState(0);
-  const [is_id, setID] = useState();
   const [is_title, setTitle] = useState();
   const [is_description, setDescription] = useState();
   const [is_date, setDate] = useState();
   let widget_timeout = null;
   let script_timeout = null;
   const widgetEl = createRef(null);
+
+  async function getItemsData() {
+    const res = await fetch(
+      `https://rtb.glueapi.io/v1/content?idParent=3147&sort=-data.episode_number/ns`
+    );
+    const data = await res.json();
+    setData(data.data);
+  }
+
+  useEffect(() => {
+    setMounted(true);
+
+    if (isMounted) {
+      getItemsData();
+    }
+  }, [isMounted]);
 
   useEffect(() => {
     is_data.forEach((items, index) => {
@@ -42,7 +58,6 @@ export default function Home({ data }) {
 
       if (index === 0) {
         setPlayerId(items.id);
-        setID(items.id);
         setTitle(items.data.title);
         setDescription(items.data.description);
         setDate(items.dateCreated);
@@ -51,7 +66,6 @@ export default function Home({ data }) {
   }, [is_data]);
 
   useEffect(() => {
-    setID(is_item_details.id);
     setTitle(is_item_details.title);
     setDate(is_item_details.dateCreated);
     setPlayerId(is_item_details.id);
