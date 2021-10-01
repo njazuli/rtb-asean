@@ -57,14 +57,14 @@ const PlayerDetails = ({ id, title, description, date }) => {
             </div>
           )}
         </div>
-        <div className="mt-2 mt-sm-0">
+        {/* <div className="mt-2 mt-sm-0">
           <a
             href="http://esasdrive.com/wl/?id=ER3mIBPvR5DA8oi6XiAvnMcb75MqnzIu&mode=grid"
             target="_blank"
           >
             <div className="load-more">Download Video Here</div>
           </a>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-100 mb-4">
