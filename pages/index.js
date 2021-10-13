@@ -14,7 +14,7 @@ export default function Home() {
   const [is_title, setTitle] = useState();
   const [is_description, setDescription] = useState();
   const [is_date, setDate] = useState();
-  const live_player_id = 2;
+  const live_player_id = 3902;
 
   async function getItemsData() {
     const res = await fetch(
