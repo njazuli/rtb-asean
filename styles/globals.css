@@ -94,7 +94,9 @@ a {
   background-image: url("../public/corak.png");
   background-repeat: repeat;
 }
-
+.cursor-pointer {
+  cursor: pointer;
+}
 /* fontsize */
 .f_12 {
   font-size: 12px;

@@ -57,12 +57,12 @@ const List = ({
     setSelectionDescription(items.data.description);
     setActive(items.id);
 
-    if (typeof window !== "undefined")
-      if (mobile) {
-        window.scrollTo(0, 400);
-      } else {
-        window.scrollTo(0, 2000);
-      }
+    // if (typeof window !== "undefined")
+    //   if (mobile) {
+    //     window.scrollTo(0, 400);
+    //   } else {
+    //     window.scrollTo(0, 10000);
+    //   }
   };
 
   const truncateString = (str, num) => {

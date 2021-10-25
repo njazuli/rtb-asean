@@ -8,7 +8,7 @@ const Header = () => {
     <div className="main-container bg-white p-0">
       <div className="w-100 d-flex flex-row justify-content-start align-items-center header-asean">
         <div className="header_leftItem">
-          <div className="header_logo_placement">
+          <div className="header_logo_placement cursor-pointer">
             <Link href="http://asean2021.bn/" passHref={true}>
               <div className="header-asean-logo">
                 <Image
@@ -32,8 +32,10 @@ const Header = () => {
               layout="responsive"
             />
           </div>
-          <div className="ms-2 ms-md-3">
-            <span className="header_text">Return to Official Website</span>
+          <div className="ms-2 ms-md-3 cursor-pointer">
+            <Link href="http://asean2021.bn/" passHref={true}>
+              <span className="header_text">Return to Official Website</span>
+            </Link>
           </div>
         </div>
         <div className="header_rightItem d-sm-none flex-row align-items-center d-flex">
